@@ -1,0 +1,293 @@
+/* --- Basic Setup & Variables (Dark Theme) --- */
+:root {
+    /* NEW: Dark theme color palette */
+    --bg-color: #121212;
+    --text-color: #F8F8F8;
+    --accent-color: #3498db;      /* A modern blue for links */
+    --border-color: #2a2a2a;
+    --secondary-text-color: #888; /* Lighter grey for dark background */
+    --card-hover-bg: #1f1f1f;
+    --tag-bg-color: #2a2a2a;       /* Dark background for tags */
+    --tag-text-color: #4ecdc4;     /* Teal accent for tag text */
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    cursor: none;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff; /* Brighter white on hover */
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+/* --- Custom Cursor --- */
+.cursor {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--text-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    z-index: 9999;
+}
+
+body:hover .cursor {
+    opacity: 1;
+}
+
+.cursor.hover-grow {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(52, 152, 219, 0.2); /* Use accent color for hover */
+    border-color: transparent;
+}
+
+
+/* --- Header --- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* UPDATED: Semi-transparent dark background */
+    background-color: rgba(18, 18, 18, 0.8); 
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.main-nav a {
+    color: var(--text-color);
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    padding: 10rem 0;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title span {
+    color: var(--secondary-text-color);
+    font-weight: 400;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-text-color);
+    max-width: 600px;
+}
+
+/* --- Work Section --- */
+.project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+.project-item:first-child {
+    border-top: 1px solid var(--border-color);
+}
+
+.project-item:hover {
+    /* UPDATED: Darker hover effect */
+    background-color: var(--card-hover-bg); 
+}
+
+.project-title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    color: var(--secondary-text-color);
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    display: inline-block;
+    /* UPDATED: New tag colors */
+    background-color: var(--tag-bg-color);
+    color: var(--tag-text-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+.project-arrow {
+    font-size: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover .project-arrow {
+    transform: translateX(10px);
+}
+
+/* --- About Section --- */
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 1rem;
+    color: var(--secondary-text-color);
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(80%); /* Added for dark theme aesthetic */
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    text-align: center;
+}
+
+.contact-text {
+    font-size: 1.25rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 2rem;
+}
+
+.contact-email {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 500;
+    color: var(--text-color);
+    display: inline-block;
+}
+
+.social-links {
+    margin-top: 3rem;
+}
+
+.social-links a {
+    margin: 0 1rem;
+    font-weight: 500;
+}
+
+/* --- Footer --- */
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        grid-row: 1;
+        max-width: 200px;
+        margin: 0 auto 2rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+    
+    .project-arrow {
+        display: none;
+    }
+}
